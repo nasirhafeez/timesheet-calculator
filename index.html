@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timesheet Calculator</title>
+    <link rel="stylesheet" href="assets/styles/bulma.min.css"/>
+</head>
+<body>
+    <section class="section mt-6">
+        <div class="columns">
+            <div class="column is-one-fifth is-offset-two-fifths">
+                <div class="box">
+                    <div class="content is-size-5 has-text-centered has-text-weight-bold">
+                        Enter Time and Hourly Rate
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-link" type="text" id="time" placeholder="Time (hh:mm:ss)"
+                                   onchange="calculate()">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-link" type="text" id="rate" placeholder="Hourly Rate"
+                                   onchange="calculate()">
+                        </div>
+                    </div>
+                    <div class="content is-size-5 has-text-centered has-text-weight-bold">
+                        Hours
+                    </div>
+                    <div class="content is-size-6 has-text-centered" id="resultTime"></div>
+                    <div class="content is-size-5 has-text-centered has-text-weight-bold">
+                        Price
+                    </div>
+                    <div class="content is-size-6 has-text-centered" id="resultRate"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script>
+    function timeToDecimal(t) {
+        t = t.split(':');
+        return ((+t[0]) + (+t[1])/60 + (+t[2])/3600).toFixed(2);
+    }
+    function calculate() {
+        var time = document.getElementById('time').value;
+        var billingRate = document.getElementById('rate').value;
+        hours = timeToDecimal(time);
+        price = hours * billingRate;
+        if (time != '') {
+            document.getElementById("resultTime").innerHTML = hours;
+        }
+        if (time != '' && billingRate != '') {
+            document.getElementById("resultRate").innerHTML = price;
+        }
+    }
+
+    // setInterval(calculate, 500);
+
+</script>
+</body>
+</html>
