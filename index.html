@@ -49,7 +49,7 @@
         var time = document.getElementById('time').value;
         var billingRate = document.getElementById('rate').value;
         hours = timeToDecimal(time);
-        price = (hours * billingRate).toFixed(2);
+        price = (hours * billingRate).toFixed(1);
         if (time != '') {
             document.getElementById("resultTime").innerHTML = hours;
         }
